@@ -82,7 +82,6 @@ namespace Sniffer_0._1
             {
                 case "0800":
                     groupBox2.Text += " (IP)";
-                    MessageBox.Show("IP");
                     
                 break;
 
