@@ -56,6 +56,8 @@ namespace Sniffer_0._1
                 bits += 4;
             }
 
+            //Comentario
+
             bits = 2;
             for(int i = 0; i < 5; i++)
             {
