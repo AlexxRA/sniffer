@@ -28,7 +28,8 @@ namespace Sniffer_0._1
         {
             StreamReader objReader = new StreamReader("trama.txt");
             string binario = "", direccionDestino="", direccionOrigen="", tipo="",version="", tipoServicio="",longitudTotal="", identificacion="", desplazamiento="", tiempovida="";
-            int nibble=46, bits=0;
+            string temp_o = "", temp_d = "", protocolo = "", check = "", ip_o = "", ip_d = "";
+            int nibble=68, bits=0;
             binario = objReader.ReadLine();
             objReader.Close();
         
@@ -52,6 +53,14 @@ namespace Sniffer_0._1
                     desplazamiento += Convert.ToString(Convert.ToInt64(binario.Substring(bits, 4), 2), 16);
                 else if (bits >= 176 && bits <= 183)//8 bits
                     tiempovida += Convert.ToString(Convert.ToInt64(binario.Substring(bits, 4), 2), 16);
+                else if (bits >= 184 && bits <= 191)//8 bits
+                    protocolo += Convert.ToString(Convert.ToInt64(binario.Substring(bits, 4), 2), 16);
+                else if (bits >= 192 && bits <= 207)//16 bits
+                    check += Convert.ToString(Convert.ToInt64(binario.Substring(bits, 4), 2), 16);
+                else if (bits >= 208 && bits <= 239)//16 bits
+                    temp_o += Convert.ToString(Convert.ToInt64(binario.Substring(bits, 4), 2), 16);
+                else if (bits >= 240 && bits <= 271)//16 bits
+                    temp_d += Convert.ToString(Convert.ToInt64(binario.Substring(bits, 4), 2), 16);
 
                 bits += 4;
             }
@@ -66,7 +75,17 @@ namespace Sniffer_0._1
                 direccionOrigen = direccionOrigen.Insert(bits, ":");
                 bits += 3;
             }
-           
+
+            bits = 0;
+            for (int i = 0; i < 4; i++)
+            {
+                ip_o += Convert.ToString(Convert.ToInt64(temp_o.Substring(bits, 2), 16), 10);
+                ip_o = ip_o.Insert(ip_o.Length, ".");
+                ip_d += Convert.ToString(Convert.ToInt64(temp_d.Substring(bits, 2), 16), 10);
+                ip_d = ip_d.Insert(ip_d.Length, ".");
+                bits += 2;
+            }
+
 
             label1.Text = direccionOrigen.ToUpper();
             label2.Text = direccionDestino.ToUpper();
@@ -77,6 +96,10 @@ namespace Sniffer_0._1
             label6.Text = identificacion;
             label7.Text = desplazamiento;
             label8.Text = tiempovida;
+            label9.Text = protocolo;
+            label10.Text = check;
+            label11.Text = ip_d;
+            label12.Text = ip_o;
 
             switch (tipo)
             {
