@@ -26,17 +26,17 @@ namespace Sniffer_0._1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            StreamReader objReader = new StreamReader("trama.txt");
+            StreamReader objReader = new StreamReader("trama.txt");//abrir archivo
             string trama = "", direccionDestino="", direccionOrigen="", tipo="",version="", tipoServicio="",longitudTotal="", identificacion="", desplazamiento="", tiempovida="";
             string temp_o = "", temp_d = "", protocolo = "", check = "", ip_o = "", ip_d = "", puertoOrigen="", puertoDestino="",numeroSecuencia="";
             int bytes=0;
 
 
-            trama = objReader.ReadLine();
+            trama = objReader.ReadLine();//linea 1
             direccionDestino = trama.Substring(0, 12);//6 Bytes
             direccionOrigen = trama.Substring(12, 12);//6 Bytes
 
-            trama = objReader.ReadLine();
+            trama = objReader.ReadLine();//linea 2
             tipo = trama.Substring(0, 4);//2 Bytes
 
             bytes = 2;
@@ -61,7 +61,7 @@ namespace Sniffer_0._1
                     tiempovida = trama.Substring(20, 2);//1 Bytes
                     protocolo = trama.Substring(22, 2);//1 Bytes
 
-                    trama = objReader.ReadLine();
+                    trama = objReader.ReadLine();//linea 3
                     check = trama.Substring(0, 4);//2 Bytes
                     temp_o = trama.Substring(4, 8);//4 Bytes
                     temp_d = trama.Substring(12, 8);//4 Bytes
@@ -70,15 +70,19 @@ namespace Sniffer_0._1
                     for (int i = 0; i < 4; i++)
                     {
                         ip_o += Convert.ToString(Convert.ToInt64(temp_o.Substring(bytes, 2), 16), 10);
-                        ip_o = ip_o.Insert(ip_o.Length, ".");
                         ip_d += Convert.ToString(Convert.ToInt64(temp_d.Substring(bytes, 2), 16), 10);
-                        ip_d = ip_d.Insert(ip_d.Length, ".");
+                        if (i != 3){
+                            ip_o = ip_o.Insert(ip_o.Length, ".");
+                            ip_d = ip_d.Insert(ip_d.Length, ".");
+                        }
                         bytes += 2;
                     }
 
                     groupBox2.Text = "Tipo: " + tipo + " (IP)";
                     label3.Text = version;
                     label4.Text = tipoServicio;
+                    label18.Text = "Rutina";
+                    label19.Text = "Servicio Normal";
                     label5.Text = Convert.ToInt64(longitudTotal,16).ToString() + " bytes";
                     label6.Text = identificacion;
                     label7.Text = desplazamiento;
@@ -94,7 +98,8 @@ namespace Sniffer_0._1
                             groupBox12.Text = "Protocolo: (TCP)";
 
                             puertoOrigen = trama.Substring(20, 4);//2 Bytes
-                            trama = objReader.ReadLine();
+
+                            trama = objReader.ReadLine();//linea 4
                             puertoDestino = trama.Substring(0, 4);//2 Bytes
                             numeroSecuencia = trama.Substring(4, 8);//4 Bytes
 
@@ -104,7 +109,7 @@ namespace Sniffer_0._1
 
                             break;
                     }
-                    objReader.Close();
+                    objReader.Close();//cerrar archivo
                     break;
 
                 case "0806":
