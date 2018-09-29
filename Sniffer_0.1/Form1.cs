@@ -78,24 +78,26 @@ namespace Sniffer_0._1
                         bytes += 2;
                     }
 
-                    groupBox2.Text = "Tipo: " + tipo + " (IP)";
+                    groupBox2.Text = "Tipo:  " + tipo + "  (IP)";
                     label3.Text = version;
                     label4.Text = tipoServicio;
                     label18.Text = "Rutina";
                     label19.Text = "Servicio Normal";
                     label5.Text = Convert.ToInt64(longitudTotal,16).ToString() + " bytes";
                     label6.Text = identificacion;
-                    label7.Text = desplazamiento;
+                    //label7.Text = desplazamiento;
+                    label7.Text = "0";
+                    label20.Text = "No fragmentado";
+                    label21.Text = "Ultimo paquete";
                     label8.Text = Convert.ToInt64(tiempovida,16).ToString() + " segundos";
-                    label9.Text = protocolo;
                     label10.Text = check;
+                    label9.Text = "Calculo :";
                     label11.Text = ip_d;
                     label12.Text = ip_o;
-                    groupBox8.Text += " (TCP)";
                     switch (protocolo)
                     {
                         case "06":
-                            groupBox12.Text = "Protocolo: (TCP)";
+                            groupBox12.Text = "Protocolo:  " + protocolo + "  (TCP)";
 
                             puertoOrigen = trama.Substring(20, 4);//2 Bytes
 
