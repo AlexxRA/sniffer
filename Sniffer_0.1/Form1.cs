@@ -28,7 +28,7 @@ namespace Sniffer_0._1
         {
             StreamReader objReader = new StreamReader("trama.txt");//abrir archivo
             string trama = "", direccionDestino="", direccionOrigen="", tipo="",version="", tipoServicio="",longitudTotal="", identificacion="", desplazamiento="", tiempovida="";
-            string temp_o = "", temp_d = "", protocolo = "", check = "", ip_o = "", ip_d = "", puertoOrigen="", puertoDestino="",numeroSecuencia="";
+            string temp_o = "", temp_d = "", protocolo = "", check = "", ip_o = "", ip_d = "";
             int bytes=0;
 
 
@@ -79,16 +79,65 @@ namespace Sniffer_0._1
                     }
 
                     groupBox2.Text = "Tipo:  " + tipo + "  (IP)";
-                    label3.Text = version;
+                    label3.Text = "Version: "+version.Substring(0,1)+" (grupos)";
+                    label23.Text = "Longitud: "+version.Substring(1, 1)+" bytes";
                     label4.Text = tipoServicio;
-                    label18.Text = "Rutina";
-                    label19.Text = "Servicio Normal";
+                    
+                    //string tipoServicioBites = Convert.ToString(Convert.ToInt64(tipoServicio,16),2);
+                    //string precedencia = tipoServicioBites.Substring(0, 3);
+                    //string TOS = tipoServicioBites.Substring(3, 4);
+                    //string MBZ = tipoServicioBites.Substring(7, 1);
+
+                    switch (tipoServicio)
+                    {
+                        case "00":
+                            label18.Text = "Rutina";
+                            label19.Text = "Servicio normal";
+                        break;
+
+                        case "20":
+                            label18.Text = "Prioridad";
+                            label19.Text = "Servicio normal";
+                            break;
+
+                        case "40":
+                            label18.Text = "Inmediato";
+                            label19.Text = "Servicio normal";
+                            break;
+
+                        case "60":
+                            label18.Text = "Flash";
+                            label19.Text = "Servicio normal";
+                            break;
+
+                        case "80":
+                            label18.Text = "Flash Override";
+                            label19.Text = "Servicio normal";
+                            break;
+                    }
+                    
                     label5.Text = Convert.ToInt64(longitudTotal,16).ToString() + " bytes";
                     label6.Text = identificacion;
-                    //label7.Text = desplazamiento;
-                    label7.Text = "0";
-                    label20.Text = "No fragmentado";
-                    label21.Text = "Ultimo paquete";
+
+                    
+                    label7.Text = desplazamiento;
+
+                    switch (desplazamiento)
+                    {
+                        case "2000":
+                            label20.Text = "Mas fragmentos";
+                            label21.Text = "No es el ultimo paquete";
+                            break;
+
+                        case "4000":
+                            label20.Text = "No fragmentado";
+                            label21.Text = "Ultimo paquete";
+                            break;
+                        case "8000":
+                            label20.Text = "Reservado";
+                            label21.Text = "Ultimo paquete";
+                            break;
+                    }
                     label8.Text = Convert.ToInt64(tiempovida,16).ToString() + " segundos";
                     label10.Text = check;
                     label9.Text = "Calculo :";
@@ -97,6 +146,7 @@ namespace Sniffer_0._1
                     switch (protocolo)
                     {
                         case "06":
+                            string puertoOrigen = "", puertoDestino = "", numeroSecuencia = "", numeroConfirmacion = "", longCabeceraTCP = "", banderasTCP = "", tamañoVentanaTCP = "", checksumTCP = "", punteroUrgente = "", opciones = "";                     
                             groupBox12.Text = "Protocolo:  " + protocolo + "  (TCP)";
 
                             puertoOrigen = trama.Substring(20, 4);//2 Bytes
@@ -104,10 +154,36 @@ namespace Sniffer_0._1
                             trama = objReader.ReadLine();//linea 4
                             puertoDestino = trama.Substring(0, 4);//2 Bytes
                             numeroSecuencia = trama.Substring(4, 8);//4 Bytes
+                            numeroConfirmacion = trama.Substring(12, 8);//4 bytes
+                            longCabeceraTCP = trama.Substring(20, 2);//1 byte
+                            banderasTCP = trama.Substring(22, 2);//1 byte
+
+                            trama = objReader.ReadLine();//linea 5
+                            tamañoVentanaTCP = trama.Substring(0, 4);//2 bytes
+                            checksumTCP = trama.Substring(4, 4);//2 bytes
+                            punteroUrgente = trama.Substring(8, 4);//2 bytes
+                            opciones = trama.Substring(12, 6);//3 bytes
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                             label13.Text = Convert.ToInt64(puertoOrigen, 16).ToString();
                             label14.Text = Convert.ToInt64(puertoDestino, 16).ToString();
                             label15.Text = numeroSecuencia;
+                            label24.Text = numeroConfirmacion;
+                            label25.Text = Convert.ToInt64(longCabeceraTCP.Substring(0,1), 16).ToString() + " bytes";
+                            label26.Text = banderasTCP;
+
 
                             break;
                     }
