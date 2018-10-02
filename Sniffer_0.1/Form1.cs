@@ -24,6 +24,27 @@ namespace Sniffer_0._1
             timer1.Start();
         }
 
+        public string RellenoOchoBits(string hexa)
+        {
+            do
+            {
+                hexa= String.Concat("0", hexa);
+            } while (hexa.Length < 8);
+
+            return hexa;
+        }
+
+        public string Relleno16Bits(string hexa)
+        {
+            do
+            {
+                hexa = String.Concat("0", hexa);
+            } while (hexa.Length < 16);
+
+            return hexa;
+        }
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             StreamReader objReader = new StreamReader("trama.txt");//abrir archivo
@@ -81,37 +102,57 @@ namespace Sniffer_0._1
                     groupBox2.Text = "Tipo:  " + tipo + "  (IP)";
                     label3.Text = "Version: "+version.Substring(0,1)+" (grupos)";
                     label23.Text = "Longitud: "+version.Substring(1, 1)+" bytes";
-                    label4.Text = tipoServicio;
                     
-                    //string tipoServicioBites = Convert.ToString(Convert.ToInt64(tipoServicio,16),2);
-                    //string precedencia = tipoServicioBites.Substring(0, 3);
-                    //string TOS = tipoServicioBites.Substring(3, 4);
-                    //string MBZ = tipoServicioBites.Substring(7, 1);
+                    tipoServicio = Convert.ToString(Convert.ToInt64(tipoServicio,16),2);//Convertir a binario
+                    tipoServicio= RellenoOchoBits(tipoServicio);//Rellenar ceros en binario
+                    label4.Text = tipoServicio.Substring(0,3) + " " + tipoServicio.Substring(3, 4) + " " + tipoServicio.Substring(7, 1);//Separa la cadena por espacios, dependiendo de las banderas
+                    string precedencia = tipoServicio.Substring(0, 3);
+                    string TOS = tipoServicio.Substring(3, 4);
+                    string MBZ = tipoServicio.Substring(7, 1);//No agregado a Form
 
-                    switch (tipoServicio)
+                    switch (precedencia)
                     {
-                        case "00":
+                        case "000":
                             label18.Text = "Rutina";
-                            label19.Text = "Servicio normal";
-                        break;
-
-                        case "20":
+                            break;
+                        case "001":
                             label18.Text = "Prioridad";
-                            label19.Text = "Servicio normal";
                             break;
-
-                        case "40":
+                        case "010":
                             label18.Text = "Inmediato";
-                            label19.Text = "Servicio normal";
                             break;
-
-                        case "60":
+                        case "011":
                             label18.Text = "Flash";
-                            label19.Text = "Servicio normal";
                             break;
-
-                        case "80":
+                        case "100":
                             label18.Text = "Flash Override";
+                            break;
+                        case "101":
+                            label18.Text = "Critico";
+                            break;
+                        case "110":
+                            label18.Text = "Internetwork control";
+                            break;
+                        case "111":
+                            label18.Text = "Network control";
+                            break;
+                    }
+
+                    switch (TOS)
+                    {
+                        case "1000":
+                            label19.Text = "Minimizar retardo";
+                            break;
+                        case "0100":
+                            label19.Text = "Maximizar la densidad de flujo";
+                            break;
+                        case "0010":
+                            label19.Text = "Maximizar la fiabilidad";
+                            break;
+                        case "0001":
+                            label19.Text = "Minimizar el coste monetario";
+                            break;
+                        case "0000":
                             label19.Text = "Servicio normal";
                             break;
                     }
@@ -119,21 +160,25 @@ namespace Sniffer_0._1
                     label5.Text = Convert.ToInt64(longitudTotal,16).ToString() + " bytes";
                     label6.Text = identificacion;
 
-                    
-                    label7.Text = desplazamiento;
 
-                    switch (desplazamiento)
+                    
+                    desplazamiento = Convert.ToString(Convert.ToInt64(desplazamiento, 16), 2);//Convertir a binario
+                    desplazamiento = Relleno16Bits(desplazamiento);//Rellenar ceros
+                    string banderasDesplazamiento = desplazamiento.Substring(0, 3);
+                    string desp = desplazamiento.Substring(3, 13);
+                    label7.Text = desp;
+                    switch (banderasDesplazamiento)
                     {
-                        case "2000":
+                        case "001":
                             label20.Text = "Mas fragmentos";
                             label21.Text = "No es el ultimo paquete";
                             break;
 
-                        case "4000":
+                        case "010":
                             label20.Text = "No fragmentado";
                             label21.Text = "Ultimo paquete";
                             break;
-                        case "8000":
+                        case "101":
                             label20.Text = "Reservado";
                             label21.Text = "Ultimo paquete";
                             break;
