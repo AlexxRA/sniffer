@@ -185,6 +185,11 @@ namespace Sniffer_0._1
                     }
                     label8.Text = Convert.ToInt64(tiempovida,16).ToString() + " segundos";
                     label10.Text = check;
+                    /* Convertir desde antes
+                    string primeraPalabra = version + tipoServicio;
+                    string segundaPalabra = longitudTotal;
+                    string terceraPalabra = identificacion;
+                    string cuartaPalabra = Convertir desde antes*/
                     label9.Text = "Calculo :";
                     label11.Text = ip_d;
                     label12.Text = ip_o;
