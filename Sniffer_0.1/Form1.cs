@@ -285,21 +285,21 @@ namespace Sniffer_0._1
 
                     string suma1,suma2,sumat;
 
-                    MessageBox.Show(Convert.ToString(Convert.ToInt64(primeraPalabra, 2), 16));
+                    /*MessageBox.Show(Convert.ToString(Convert.ToInt64(primeraPalabra, 2), 16));
                     MessageBox.Show(Convert.ToString(Convert.ToInt64(segundaPalabra, 2), 16));
                     MessageBox.Show(Convert.ToString(Convert.ToInt64(terceraPalabra, 2), 16));
                     MessageBox.Show(Convert.ToString(Convert.ToInt64(cuartaPalabra, 2), 16));
-                    MessageBox.Show(Convert.ToString(Convert.ToInt64(quintaPalabra, 2), 16));
+                    MessageBox.Show(Convert.ToString(Convert.ToInt64(quintaPalabra, 2), 16));*/
                     suma1 = sumar(primeraPalabra, segundaPalabra);
                     suma1 = sumar(suma1, terceraPalabra);
                     suma1 = sumar(suma1, cuartaPalabra);
                     suma1 = sumar(suma1, quintaPalabra);
 
-                    MessageBox.Show(Convert.ToString(Convert.ToInt64(sextaPalabra, 2), 16));
+                    /*MessageBox.Show(Convert.ToString(Convert.ToInt64(sextaPalabra, 2), 16));
                     MessageBox.Show(Convert.ToString(Convert.ToInt64(septimaPalabra, 2), 16));
                     MessageBox.Show(Convert.ToString(Convert.ToInt64(octavaPalabra, 2), 16));
                     MessageBox.Show(Convert.ToString(Convert.ToInt64(novenaPalabra, 2), 16));
-                    MessageBox.Show(Convert.ToString(Convert.ToInt64(decimapalabra, 2), 16));
+                    MessageBox.Show(Convert.ToString(Convert.ToInt64(decimapalabra, 2), 16));*/
                     suma2 = sumar(sextaPalabra, septimaPalabra);
                     suma2 = sumar(suma2, octavaPalabra);
                     suma2 = sumar(suma2, novenaPalabra);
