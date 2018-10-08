@@ -26,22 +26,94 @@ namespace Sniffer_0._1
 
         public string RellenoOchoBits(string hexa)
         {
-            do
+            while (hexa.Length < 8)
             {
                 hexa= String.Concat("0", hexa);
-            } while (hexa.Length < 8);
+            } 
 
             return hexa;
         }
 
         public string Relleno16Bits(string hexa)
         {
-            do
+            while (hexa.Length < 16) 
             {
                 hexa = String.Concat("0", hexa);
-            } while (hexa.Length < 16);
+            }
 
             return hexa;
+        }
+
+        public string Complemento(string palabra)
+        {
+            string comp="";
+
+            for (int i = 0; i < 16; i++)
+            {
+                if (palabra[i].Equals('1'))
+                {
+                    comp += "0";
+                }
+                else
+                {
+                    comp += "1";
+                }
+            }
+
+            return comp;
+        }
+
+        public string sumar(string palabra1, string palabra2)
+        {
+            string sum = "";
+            bool carry = false;
+
+            for (int i = 15; i >= 0; i--)
+            {
+                if (palabra1[i].Equals('1') && palabra2[i].Equals('1'))
+                {
+                    if (carry)
+                    {
+                        sum = "1" + sum;
+                    }
+                    else
+                    {
+                        sum = "0" + sum;
+                    }
+                    carry = true;
+                }
+                else if (palabra1[i].Equals('0') && palabra2[i].Equals('0'))
+                {
+                    if (carry)
+                    {
+                        sum = "1" + sum;
+                    }
+                    else
+                    {
+                        sum = "0" + sum;
+                    }
+                    carry = false;
+                }
+                else
+                {
+                    if (carry)
+                    {
+                        sum = "0" + sum;
+                        carry = true;
+                    }
+                    else
+                    {
+                        sum = "1" + sum;
+                        carry = false;
+                    }
+                }
+            }
+            if (carry)
+            {
+                sum =sumar(sum, "0000000000000001");
+            }
+
+            return sum;
         }
 
 
@@ -102,7 +174,7 @@ namespace Sniffer_0._1
                     groupBox2.Text = "Tipo:  " + tipo + "  (IP)";
                     label3.Text = "Version: "+version.Substring(0,1)+" (grupos)";
                     label23.Text = "Longitud: "+version.Substring(1, 1)+" bytes";
-                    
+
                     tipoServicio = Convert.ToString(Convert.ToInt64(tipoServicio,16),2);//Convertir a binario
                     tipoServicio= RellenoOchoBits(tipoServicio);//Rellenar ceros en binario
                     string ts = tipoServicio;//Para checksum
@@ -187,41 +259,60 @@ namespace Sniffer_0._1
                     }
                     label8.Text = Convert.ToInt64(tiempovida,16).ToString() + " segundos";
                     label10.Text = check;
+
                     // Convertir desde antes
                     string primeraPalabra = Convert.ToString(Convert.ToInt64(version, 16), 2) + ts;
+                    primeraPalabra = Relleno16Bits(primeraPalabra);
                     string segundaPalabra = Convert.ToString(Convert.ToInt64(longitudTotal, 16), 2);
                     segundaPalabra = Relleno16Bits(segundaPalabra);
                     string terceraPalabra = Convert.ToString(Convert.ToInt64(identificacion, 16), 2);
                     terceraPalabra = Relleno16Bits(terceraPalabra);
                     string cuartaPalabra = ds;
-                    string quintaPalabra = Convert.ToString(Convert.ToInt64(tiempovida, 16), 2) + Convert.ToString(Convert.ToInt64(protocolo, 16), 2);
+                    string quintaPalabra = Convert.ToString(Convert.ToInt64(protocolo, 16), 2);
+                    quintaPalabra = RellenoOchoBits(quintaPalabra);
+                    quintaPalabra = Convert.ToString(Convert.ToInt64(tiempovida, 16), 2) + quintaPalabra;
                     quintaPalabra = Relleno16Bits(quintaPalabra);
-                    string sextaPalabra = Convert.ToString(Convert.ToInt64(temp_o.Substring(0, 4), 16), 2);
-                    sextaPalabra = Relleno16Bits(sextaPalabra);
-                    string septimaPalabra = Convert.ToString(Convert.ToInt64(temp_o.Substring(4, 4), 16), 2);
+                    string sextaPalabra = "0000000000000000";
+                    string septimaPalabra = Convert.ToString(Convert.ToInt64(temp_o.Substring(0, 4), 16), 2);
                     septimaPalabra = Relleno16Bits(septimaPalabra);
-                    string octavaPalabra = Convert.ToString(Convert.ToInt64(temp_d.Substring(0, 4), 16), 2);
+                    string octavaPalabra = Convert.ToString(Convert.ToInt64(temp_o.Substring(4, 4), 16), 2);
                     octavaPalabra = Relleno16Bits(octavaPalabra);
-                    string novenaPalabra = Convert.ToString(Convert.ToInt64(temp_d.Substring(4, 4), 16), 2);
+                    string novenaPalabra = Convert.ToString(Convert.ToInt64(temp_d.Substring(0, 4), 16), 2);
                     novenaPalabra = Relleno16Bits(novenaPalabra);
+                    string decimapalabra = Convert.ToString(Convert.ToInt64(temp_d.Substring(4, 4), 16), 2);
+                    decimapalabra = Relleno16Bits(decimapalabra);
+                    
 
-                    /*string suma;
-                    for (int i = 0; i < 9; i++)
-                    {
-                        suma
-                    }
+                    string suma1,suma2,sumat;
 
-                    MessageBox.Show(primeraPalabra);
-                    MessageBox.Show(segundaPalabra);
-                    MessageBox.Show(terceraPalabra);
-                    MessageBox.Show(cuartaPalabra);
-                    MessageBox.Show(quintaPalabra);
-                    MessageBox.Show(sextaPalabra);
-                    MessageBox.Show(septimaPalabra);
-                    MessageBox.Show(octavaPalabra);
-                    MessageBox.Show(novenaPalabra);*/
-                   
+                    MessageBox.Show(Convert.ToString(Convert.ToInt64(primeraPalabra, 2), 16));
+                    MessageBox.Show(Convert.ToString(Convert.ToInt64(segundaPalabra, 2), 16));
+                    MessageBox.Show(Convert.ToString(Convert.ToInt64(terceraPalabra, 2), 16));
+                    MessageBox.Show(Convert.ToString(Convert.ToInt64(cuartaPalabra, 2), 16));
+                    MessageBox.Show(Convert.ToString(Convert.ToInt64(quintaPalabra, 2), 16));
+                    suma1 = sumar(primeraPalabra, segundaPalabra);
+                    suma1 = sumar(suma1, terceraPalabra);
+                    suma1 = sumar(suma1, cuartaPalabra);
+                    suma1 = sumar(suma1, quintaPalabra);
+
+                    MessageBox.Show(Convert.ToString(Convert.ToInt64(sextaPalabra, 2), 16));
+                    MessageBox.Show(Convert.ToString(Convert.ToInt64(septimaPalabra, 2), 16));
+                    MessageBox.Show(Convert.ToString(Convert.ToInt64(octavaPalabra, 2), 16));
+                    MessageBox.Show(Convert.ToString(Convert.ToInt64(novenaPalabra, 2), 16));
+                    MessageBox.Show(Convert.ToString(Convert.ToInt64(decimapalabra, 2), 16));
+                    suma2 = sumar(sextaPalabra, septimaPalabra);
+                    suma2 = sumar(suma2, octavaPalabra);
+                    suma2 = sumar(suma2, novenaPalabra);
+                    suma2 = sumar(suma2, decimapalabra);
+
+                    sumat = sumar(suma1, suma2);
+                    sumat = Complemento(sumat);
+                    
+
+
                     label9.Text = "Calculo :";
+                    label22.Text = Convert.ToString(Convert.ToInt64(sumat, 2), 16);
+
                     label11.Text = ip_d;
                     label12.Text = ip_o;
                     switch (protocolo)
