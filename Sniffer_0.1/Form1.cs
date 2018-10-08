@@ -105,6 +105,7 @@ namespace Sniffer_0._1
                     
                     tipoServicio = Convert.ToString(Convert.ToInt64(tipoServicio,16),2);//Convertir a binario
                     tipoServicio= RellenoOchoBits(tipoServicio);//Rellenar ceros en binario
+                    string ts = tipoServicio;//Para checksum
                     label4.Text = tipoServicio.Substring(0,3) + " " + tipoServicio.Substring(3, 4) + " " + tipoServicio.Substring(7, 1);//Separa la cadena por espacios, dependiendo de las banderas
                     string precedencia = tipoServicio.Substring(0, 3);
                     string TOS = tipoServicio.Substring(3, 4);
@@ -164,6 +165,7 @@ namespace Sniffer_0._1
                     
                     desplazamiento = Convert.ToString(Convert.ToInt64(desplazamiento, 16), 2);//Convertir a binario
                     desplazamiento = Relleno16Bits(desplazamiento);//Rellenar ceros
+                    string ds = desplazamiento;
                     string banderasDesplazamiento = desplazamiento.Substring(0, 3);
                     string desp = desplazamiento.Substring(3, 13);
                     label7.Text = desp;
@@ -185,11 +187,40 @@ namespace Sniffer_0._1
                     }
                     label8.Text = Convert.ToInt64(tiempovida,16).ToString() + " segundos";
                     label10.Text = check;
-                    /* Convertir desde antes
-                    string primeraPalabra = version + tipoServicio;
-                    string segundaPalabra = longitudTotal;
-                    string terceraPalabra = identificacion;
-                    string cuartaPalabra = Convertir desde antes*/
+                    // Convertir desde antes
+                    string primeraPalabra = Convert.ToString(Convert.ToInt64(version, 16), 2) + ts;
+                    string segundaPalabra = Convert.ToString(Convert.ToInt64(longitudTotal, 16), 2);
+                    segundaPalabra = Relleno16Bits(segundaPalabra);
+                    string terceraPalabra = Convert.ToString(Convert.ToInt64(identificacion, 16), 2);
+                    terceraPalabra = Relleno16Bits(terceraPalabra);
+                    string cuartaPalabra = ds;
+                    string quintaPalabra = Convert.ToString(Convert.ToInt64(tiempovida, 16), 2) + Convert.ToString(Convert.ToInt64(protocolo, 16), 2);
+                    quintaPalabra = Relleno16Bits(quintaPalabra);
+                    string sextaPalabra = Convert.ToString(Convert.ToInt64(temp_o.Substring(0, 4), 16), 2);
+                    sextaPalabra = Relleno16Bits(sextaPalabra);
+                    string septimaPalabra = Convert.ToString(Convert.ToInt64(temp_o.Substring(4, 4), 16), 2);
+                    septimaPalabra = Relleno16Bits(septimaPalabra);
+                    string octavaPalabra = Convert.ToString(Convert.ToInt64(temp_d.Substring(0, 4), 16), 2);
+                    octavaPalabra = Relleno16Bits(octavaPalabra);
+                    string novenaPalabra = Convert.ToString(Convert.ToInt64(temp_d.Substring(4, 4), 16), 2);
+                    novenaPalabra = Relleno16Bits(novenaPalabra);
+
+                    /*string suma;
+                    for (int i = 0; i < 9; i++)
+                    {
+                        suma
+                    }
+
+                    MessageBox.Show(primeraPalabra);
+                    MessageBox.Show(segundaPalabra);
+                    MessageBox.Show(terceraPalabra);
+                    MessageBox.Show(cuartaPalabra);
+                    MessageBox.Show(quintaPalabra);
+                    MessageBox.Show(sextaPalabra);
+                    MessageBox.Show(septimaPalabra);
+                    MessageBox.Show(octavaPalabra);
+                    MessageBox.Show(novenaPalabra);*/
+                   
                     label9.Text = "Calculo :";
                     label11.Text = ip_d;
                     label12.Text = ip_o;
@@ -209,30 +240,47 @@ namespace Sniffer_0._1
                             banderasTCP = trama.Substring(22, 2);//1 byte
 
                             trama = objReader.ReadLine();//linea 5
+
                             tamañoVentanaTCP = trama.Substring(0, 4);//2 bytes
                             checksumTCP = trama.Substring(4, 4);//2 bytes
                             punteroUrgente = trama.Substring(8, 4);//2 bytes
                             opciones = trama.Substring(12, 6);//3 bytes
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+                            banderasTCP= Convert.ToString(Convert.ToInt64(banderasTCP, 16), 2);
+                            banderasTCP = RellenoOchoBits(banderasTCP);
                             label13.Text = Convert.ToInt64(puertoOrigen, 16).ToString();
                             label14.Text = Convert.ToInt64(puertoDestino, 16).ToString();
-                            label15.Text = numeroSecuencia;
-                            label24.Text = numeroConfirmacion;
+                            label15.Text = Convert.ToInt64(numeroSecuencia, 16).ToString();
+                            label24.Text = Convert.ToInt64(numeroConfirmacion, 16).ToString();
                             label25.Text = Convert.ToInt64(longCabeceraTCP.Substring(0,1), 16).ToString() + " bytes";
-                            label26.Text = banderasTCP;
+                            //label26.Text = banderasTCP;
+                            if (banderasTCP.Substring(2, 1).ToString() == "1")
+                            {
+                                label26.Text = "URG = 1";
+                            }
+                            if (banderasTCP.Substring(3, 1).ToString() == "1")
+                            {
+                                label30.Text = "ACK = 1";
+                            }
+                            if (banderasTCP.Substring(4, 1).ToString() == "1")
+                            {
+                                label31.Text = "PSH = 1";
+                            }
+                            if (banderasTCP.Substring(5, 1).ToString() == "1")
+                            {
+                                label34.Text = "RST = 1";
+                            }
+                            if (banderasTCP.Substring(6, 1).ToString() == "1")
+                            {
+                                label33.Text = "SYN = 1";
+                            }
+                            if (banderasTCP.Substring(7, 1).ToString() == "1")
+                            {
+                                label32.Text = "FIN = 1";
+                            }
+                            label27.Text = Convert.ToInt64(tamañoVentanaTCP, 16).ToString() + "bytes";
+                            label28.Text = checksumTCP;
+                            label29.Text = punteroUrgente;
 
 
                             break;
