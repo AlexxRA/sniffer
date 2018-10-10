@@ -369,7 +369,7 @@ namespace Sniffer_0._1
                             {
                                 label32.Text = "FIN = 1";
                             }
-                            label27.Text = Convert.ToInt64(tamañoVentanaTCP, 16).ToString() + "bytes";
+                            label27.Text = Convert.ToInt64(tamañoVentanaTCP, 16).ToString() + " bytes";
                             label28.Text = checksumTCP;
                             label29.Text = punteroUrgente;
 
