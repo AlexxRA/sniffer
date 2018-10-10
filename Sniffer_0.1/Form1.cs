@@ -390,5 +390,10 @@ namespace Sniffer_0._1
             label16.Text = "Fecha: "+ DateTime.Now.ToString("dd/MM/yyyy");
             label17.Text = "Hora: "+ DateTime.Now.ToString("hh:mm:ss");
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 } 
