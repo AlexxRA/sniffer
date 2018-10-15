@@ -374,6 +374,107 @@ namespace Sniffer_0._1
                             label29.Text = punteroUrgente;
 
 
+                            string datos = trama.Substring(18, 6);
+
+                            trama = objReader.ReadLine();//linea 6
+                            datos += trama;
+                            trama = objReader.ReadLine();//linea 7
+                            datos += trama;
+                            trama = objReader.ReadLine();//linea 8
+                            datos += trama;
+                            trama = objReader.ReadLine();//linea 9
+                            datos += trama;
+                            trama = objReader.ReadLine();//linea 10
+                            datos += trama;
+
+                            string sumasc, sumatcp, sumad, sumaf;
+
+                            int segmento = datos.Length / 2;
+                            segmento += 23;
+
+                            string palabra1tcp = Convert.ToString(Convert.ToInt64(temp_o.Substring(0, 4), 16), 2);
+                            palabra1tcp = Relleno16Bits(palabra1tcp);
+                            string palabra2tcp = Convert.ToString(Convert.ToInt64(temp_o.Substring(4, 4), 16), 2);
+                            palabra2tcp = Relleno16Bits(palabra2tcp);
+                            string palabra3tcp = Convert.ToString(Convert.ToInt64(temp_d.Substring(0, 4), 16), 2);
+                            palabra3tcp = Relleno16Bits(palabra3tcp);
+                            string palabra4tcp = Convert.ToString(Convert.ToInt64(temp_d.Substring(4, 4), 16), 2);
+                            palabra4tcp = Relleno16Bits(palabra4tcp);
+                            string palabra5tcp = Convert.ToString(Convert.ToInt64(protocolo, 16), 2);
+                            palabra5tcp = Relleno16Bits(palabra5tcp);
+                            string palabra6tcp = Convert.ToString(segmento, 2);
+                            palabra6tcp = Relleno16Bits(palabra6tcp);
+
+                            sumasc = sumar(palabra1tcp, palabra2tcp);
+                            sumasc = sumar(sumasc, palabra3tcp);
+                            sumasc = sumar(sumasc, palabra4tcp);
+                            sumasc = sumar(sumasc, palabra5tcp);
+                            sumasc = sumar(sumasc, palabra6tcp);
+                            
+
+                            string palabra7tcp = Convert.ToString(Convert.ToInt64(puertoOrigen, 16), 2);
+                            palabra7tcp = Relleno16Bits(palabra7tcp);
+                            string palabra8tcp = Convert.ToString(Convert.ToInt64(puertoDestino, 16), 2);
+                            palabra8tcp = Relleno16Bits(palabra8tcp);
+                            string palabra9tcp = Convert.ToString(Convert.ToInt64(numeroSecuencia.Substring(0, 4), 16), 2);
+                            palabra9tcp = Relleno16Bits(palabra9tcp);
+                            string palabra10tcp = Convert.ToString(Convert.ToInt64(numeroSecuencia.Substring(4, 4), 16), 2);
+                            palabra10tcp = Relleno16Bits(palabra10tcp);
+                            string palabra11tcp = Convert.ToString(Convert.ToInt64(numeroConfirmacion.Substring(0, 4), 16), 2);
+                            palabra11tcp = Relleno16Bits(palabra11tcp);
+                            string palabra12tcp = Convert.ToString(Convert.ToInt64(numeroConfirmacion.Substring(4, 4), 16), 2);
+                            palabra12tcp = Relleno16Bits(palabra12tcp);
+                            string palabra13tcp = Convert.ToString(Convert.ToInt64(longCabeceraTCP, 16), 2);
+                            palabra13tcp = RellenoOchoBits(palabra13tcp);
+                            palabra13tcp = Convert.ToString(banderasTCP) + palabra13tcp;
+                            string palabra14tcp = Convert.ToString(Convert.ToInt64(tamañoVentanaTCP, 16), 2);
+                            palabra14tcp = Relleno16Bits(palabra14tcp);
+                            string palabra15tcp = "0000000000000000";
+                            string palabra16tcp = Convert.ToString(Convert.ToInt64(punteroUrgente, 16), 2);
+                            palabra16tcp = Relleno16Bits(palabra16tcp);
+                            string palabra17tcp = Convert.ToString(Convert.ToInt64(opciones.Substring(0, 4), 16), 2);
+                            palabra17tcp = Relleno16Bits(palabra17tcp);
+                            string palabra18tcp = "00000000";
+                            palabra18tcp = Convert.ToString(Convert.ToInt64(opciones.Substring(4, 2), 16), 2) + palabra18tcp;
+                            palabra18tcp = Relleno16Bits(palabra18tcp);
+
+                            sumatcp = sumar(palabra7tcp, palabra8tcp);
+                            sumatcp = sumar(sumatcp, palabra9tcp);
+                            sumatcp = sumar(sumatcp, palabra10tcp);
+                            sumatcp = sumar(sumatcp, palabra11tcp);
+                            sumatcp = sumar(sumatcp, palabra12tcp);
+                            sumatcp = sumar(sumatcp, palabra13tcp);
+                            sumatcp = sumar(sumatcp, palabra14tcp);
+                            sumatcp = sumar(sumatcp, palabra15tcp);
+                            sumatcp = sumar(sumatcp, palabra16tcp);
+                            sumatcp = sumar(sumatcp, palabra17tcp);
+                            sumatcp = sumar(sumatcp, palabra18tcp);
+
+                            //MessageBox.Show(Convert.ToString(Convert.ToInt64(sumatcp, 2), 16));
+
+
+                            sumad = sumar(datos.Substring(0, 16), datos.Substring(16, 16));
+                            int bits = 32;
+                            if (segmento % 2 == 1)
+                            {
+                                segmento += 1;
+                                datos += "00000000";
+                            }
+                            for(int i=0; i<(segmento/2)-2; i++)
+                            {
+                                sumad = sumar(sumad, datos.Substring(bits, 16));
+                            }
+
+                            //MessageBox.Show(Convert.ToString(Convert.ToInt64(sumad, 2), 16));
+
+                            sumaf = sumar(sumasc, sumatcp);
+                            sumaf = sumar(sumaf, sumad);
+
+                            sumaf = Complemento(sumaf);
+
+                            //MessageBox.Show(Convert.ToString(Convert.ToInt64(sumaf, 2), 16));
+
+
                             break;
                     }
                     objReader.Close();//cerrar archivo
