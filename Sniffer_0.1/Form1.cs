@@ -390,7 +390,7 @@ namespace Sniffer_0._1
                             string sumasc, sumatcp, sumad, sumaf;
 
                             int segmento = datos.Length / 2;
-                            segmento += 23;
+                            segmento += 28;
 
                             string palabra1tcp = Convert.ToString(Convert.ToInt64(temp_o.Substring(0, 4), 16), 2);
                             palabra1tcp = Relleno16Bits(palabra1tcp);
@@ -410,7 +410,9 @@ namespace Sniffer_0._1
                             sumasc = sumar(sumasc, palabra4tcp);
                             sumasc = sumar(sumasc, palabra5tcp);
                             sumasc = sumar(sumasc, palabra6tcp);
-                            
+
+                            //MessageBox.Show(Convert.ToString(Convert.ToInt64(sumasc, 2), 16));
+
 
                             string palabra7tcp = Convert.ToString(Convert.ToInt64(puertoOrigen, 16), 2);
                             palabra7tcp = Relleno16Bits(palabra7tcp);
@@ -424,9 +426,10 @@ namespace Sniffer_0._1
                             palabra11tcp = Relleno16Bits(palabra11tcp);
                             string palabra12tcp = Convert.ToString(Convert.ToInt64(numeroConfirmacion.Substring(4, 4), 16), 2);
                             palabra12tcp = Relleno16Bits(palabra12tcp);
-                            string palabra13tcp = Convert.ToString(Convert.ToInt64(longCabeceraTCP, 16), 2);
+                            string palabra13tcp = banderasTCP;
                             palabra13tcp = RellenoOchoBits(palabra13tcp);
-                            palabra13tcp = Convert.ToString(banderasTCP) + palabra13tcp;
+                            palabra13tcp = Convert.ToString(Convert.ToInt64(longCabeceraTCP, 16), 2) + palabra13tcp;
+                            palabra13tcp = Relleno16Bits(palabra13tcp);
                             string palabra14tcp = Convert.ToString(Convert.ToInt64(tamañoVentanaTCP, 16), 2);
                             palabra14tcp = Relleno16Bits(palabra14tcp);
                             string palabra15tcp = "0000000000000000";
@@ -453,26 +456,26 @@ namespace Sniffer_0._1
                             //MessageBox.Show(Convert.ToString(Convert.ToInt64(sumatcp, 2), 16));
 
 
-                            sumad = sumar(datos.Substring(0, 16), datos.Substring(16, 16));
-                            int bits = 32;
-                            if (segmento % 2 == 1)
+                            sumad = sumar(Relleno16Bits(Convert.ToString(Convert.ToInt64(datos.Substring(0, 4), 16), 2)), Relleno16Bits(Convert.ToString(Convert.ToInt64(datos.Substring(4, 4), 16), 2)));
+                            int bits = 8;
+                            int tam = datos.Length / 2;
+                            if (tam % 2 == 1)
                             {
-                                segmento += 1;
-                                datos += "00000000";
+                                tam += 1;
+                                datos += "00";
                             }
-                            for(int i=0; i<(segmento/2)-2; i++)
+                            for(int i=0; i<(tam / 2)-2; i++)
                             {
-                                sumad = sumar(sumad, datos.Substring(bits, 16));
+                                sumad = sumar(sumad, Relleno16Bits(Convert.ToString(Convert.ToInt64(datos.Substring(bits, 4), 16), 2)));
+                                bits += 4;
                             }
-
-                            //MessageBox.Show(Convert.ToString(Convert.ToInt64(sumad, 2), 16));
 
                             sumaf = sumar(sumasc, sumatcp);
                             sumaf = sumar(sumaf, sumad);
 
-                            sumaf = Complemento(sumaf);
+                            //sumaf = Complemento(sumaf);
 
-                            //MessageBox.Show(Convert.ToString(Convert.ToInt64(sumaf, 2), 16));
+                            MessageBox.Show(Convert.ToString(Convert.ToInt64(sumaf, 2), 16));
 
 
                             break;
