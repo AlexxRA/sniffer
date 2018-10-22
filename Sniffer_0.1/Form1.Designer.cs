@@ -354,7 +354,7 @@
             this.groupBox8.Size = new System.Drawing.Size(186, 55);
             this.groupBox8.TabIndex = 14;
             this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Numero de confirmacion";
+            this.groupBox8.Text = "Número de confirmacion";
             // 
             // label24
             // 
@@ -375,7 +375,7 @@
             this.groupBox15.Size = new System.Drawing.Size(186, 55);
             this.groupBox15.TabIndex = 13;
             this.groupBox15.TabStop = false;
-            this.groupBox15.Text = "Numero de secuencia";
+            this.groupBox15.Text = "Número de secuencia";
             // 
             // label15
             // 
@@ -590,7 +590,7 @@
             this.groupBox5.Size = new System.Drawing.Size(129, 55);
             this.groupBox5.TabIndex = 6;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Identificacion";
+            this.groupBox5.Text = "Identificación";
             // 
             // label6
             // 
@@ -682,7 +682,7 @@
             this.groupBox1.Size = new System.Drawing.Size(163, 131);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Version y longitud";
+            this.groupBox1.Text = "Versión y longitud";
             // 
             // label23
             // 
