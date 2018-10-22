@@ -34,7 +34,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.groupBox21 = new System.Windows.Forms.GroupBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.groupBox20 = new System.Windows.Forms.GroupBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.groupBox19 = new System.Windows.Forms.GroupBox();
+            this.label27 = new System.Windows.Forms.Label();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
             this.label25 = new System.Windows.Forms.Label();
@@ -77,21 +88,13 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.groupBox19 = new System.Windows.Forms.GroupBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.groupBox20 = new System.Windows.Forms.GroupBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.groupBox21 = new System.Windows.Forms.GroupBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.gb_origen.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox12.SuspendLayout();
+            this.groupBox21.SuspendLayout();
+            this.groupBox20.SuspendLayout();
+            this.groupBox19.SuspendLayout();
             this.groupBox18.SuspendLayout();
             this.groupBox17.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -109,9 +112,6 @@
             this.groupBox1.SuspendLayout();
             this.gb_destino.SuspendLayout();
             this.groupBox16.SuspendLayout();
-            this.groupBox19.SuspendLayout();
-            this.groupBox20.SuspendLayout();
-            this.groupBox21.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -130,7 +130,7 @@
             // 
             this.gb_origen.Controls.Add(this.label1);
             this.gb_origen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gb_origen.Location = new System.Drawing.Point(259, 12);
+            this.gb_origen.Location = new System.Drawing.Point(281, 12);
             this.gb_origen.Name = "gb_origen";
             this.gb_origen.Size = new System.Drawing.Size(214, 75);
             this.gb_origen.TabIndex = 1;
@@ -185,6 +185,69 @@
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Protocolo";
             // 
+            // groupBox21
+            // 
+            this.groupBox21.Controls.Add(this.label29);
+            this.groupBox21.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox21.Location = new System.Drawing.Point(516, 148);
+            this.groupBox21.Name = "groupBox21";
+            this.groupBox21.Size = new System.Drawing.Size(186, 55);
+            this.groupBox21.TabIndex = 17;
+            this.groupBox21.TabStop = false;
+            this.groupBox21.Text = "Puntero urgente";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(57, 24);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(80, 18);
+            this.label29.TabIndex = 1;
+            this.label29.Text = "                  ";
+            // 
+            // groupBox20
+            // 
+            this.groupBox20.Controls.Add(this.label28);
+            this.groupBox20.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox20.Location = new System.Drawing.Point(17, 148);
+            this.groupBox20.Name = "groupBox20";
+            this.groupBox20.Size = new System.Drawing.Size(378, 55);
+            this.groupBox20.TabIndex = 16;
+            this.groupBox20.TabStop = false;
+            this.groupBox20.Text = "Checksum";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(21, 24);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(80, 18);
+            this.label28.TabIndex = 1;
+            this.label28.Text = "                  ";
+            // 
+            // groupBox19
+            // 
+            this.groupBox19.Controls.Add(this.label27);
+            this.groupBox19.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox19.Location = new System.Drawing.Point(629, 87);
+            this.groupBox19.Name = "groupBox19";
+            this.groupBox19.Size = new System.Drawing.Size(186, 55);
+            this.groupBox19.TabIndex = 15;
+            this.groupBox19.TabStop = false;
+            this.groupBox19.Text = "Tamaño de la ventana";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(34, 23);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(80, 18);
+            this.label27.TabIndex = 1;
+            this.label27.Text = "                  ";
+            // 
             // groupBox18
             // 
             this.groupBox18.Controls.Add(this.label32);
@@ -200,6 +263,56 @@
             this.groupBox18.TabIndex = 15;
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = "Banderas";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(348, 24);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(55, 18);
+            this.label32.TabIndex = 6;
+            this.label32.Text = "FIN = 0";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(281, 24);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(61, 18);
+            this.label33.TabIndex = 5;
+            this.label33.Text = "SYN = 0";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(219, 24);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(56, 18);
+            this.label34.TabIndex = 4;
+            this.label34.Text = "RST = 0";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(154, 24);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(59, 18);
+            this.label31.TabIndex = 3;
+            this.label31.Text = "PSH = 0";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(83, 24);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(65, 18);
+            this.label30.TabIndex = 2;
+            this.label30.Text = "ACK = 0";
             // 
             // label26
             // 
@@ -648,119 +761,6 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // groupBox19
-            // 
-            this.groupBox19.Controls.Add(this.label27);
-            this.groupBox19.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox19.Location = new System.Drawing.Point(629, 87);
-            this.groupBox19.Name = "groupBox19";
-            this.groupBox19.Size = new System.Drawing.Size(186, 55);
-            this.groupBox19.TabIndex = 15;
-            this.groupBox19.TabStop = false;
-            this.groupBox19.Text = "Tamaño de la ventana";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(34, 23);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(80, 18);
-            this.label27.TabIndex = 1;
-            this.label27.Text = "                  ";
-            // 
-            // groupBox20
-            // 
-            this.groupBox20.Controls.Add(this.label28);
-            this.groupBox20.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox20.Location = new System.Drawing.Point(17, 148);
-            this.groupBox20.Name = "groupBox20";
-            this.groupBox20.Size = new System.Drawing.Size(378, 55);
-            this.groupBox20.TabIndex = 16;
-            this.groupBox20.TabStop = false;
-            this.groupBox20.Text = "Checksum";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(21, 24);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(80, 18);
-            this.label28.TabIndex = 1;
-            this.label28.Text = "                  ";
-            // 
-            // groupBox21
-            // 
-            this.groupBox21.Controls.Add(this.label29);
-            this.groupBox21.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox21.Location = new System.Drawing.Point(516, 148);
-            this.groupBox21.Name = "groupBox21";
-            this.groupBox21.Size = new System.Drawing.Size(186, 55);
-            this.groupBox21.TabIndex = 17;
-            this.groupBox21.TabStop = false;
-            this.groupBox21.Text = "Puntero urgente";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(57, 24);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(80, 18);
-            this.label29.TabIndex = 1;
-            this.label29.Text = "                  ";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(83, 24);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(65, 18);
-            this.label30.TabIndex = 2;
-            this.label30.Text = "ACK = 0";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(154, 24);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(59, 18);
-            this.label31.TabIndex = 3;
-            this.label31.Text = "PSH = 0";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(348, 24);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(55, 18);
-            this.label32.TabIndex = 6;
-            this.label32.Text = "FIN = 0";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(281, 24);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(61, 18);
-            this.label33.TabIndex = 5;
-            this.label33.Text = "SYN = 0";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(219, 24);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(56, 18);
-            this.label34.TabIndex = 4;
-            this.label34.Text = "RST = 0";
-            // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.White;
@@ -793,6 +793,12 @@
             this.gb_origen.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox12.ResumeLayout(false);
+            this.groupBox21.ResumeLayout(false);
+            this.groupBox21.PerformLayout();
+            this.groupBox20.ResumeLayout(false);
+            this.groupBox20.PerformLayout();
+            this.groupBox19.ResumeLayout(false);
+            this.groupBox19.PerformLayout();
             this.groupBox18.ResumeLayout(false);
             this.groupBox18.PerformLayout();
             this.groupBox17.ResumeLayout(false);
@@ -827,12 +833,6 @@
             this.gb_destino.PerformLayout();
             this.groupBox16.ResumeLayout(false);
             this.groupBox16.PerformLayout();
-            this.groupBox19.ResumeLayout(false);
-            this.groupBox19.PerformLayout();
-            this.groupBox20.ResumeLayout(false);
-            this.groupBox20.PerformLayout();
-            this.groupBox21.ResumeLayout(false);
-            this.groupBox21.PerformLayout();
             this.ResumeLayout(false);
 
         }

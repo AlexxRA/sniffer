@@ -22,6 +22,7 @@ namespace Sniffer_0._1
         private void Sniffer_Load(object sender, EventArgs e)
         {
             timer1.Start();
+            //yeah
         }
 
         public string RellenoOchoBits(string hexa)
