@@ -232,7 +232,7 @@ namespace Sniffer_0._1
                     }
                     
                     label5.Text = Convert.ToInt64(longitudTotal,16).ToString() + " bytes";
-                    label6.Text = identificacion;
+                    label6.Text = "0x"+identificacion;
 
 
                     
@@ -259,7 +259,7 @@ namespace Sniffer_0._1
                             break;
                     }
                     label8.Text = Convert.ToInt64(tiempovida,16).ToString() + " segundos";
-                    label10.Text = check;
+                    label10.Text = "0x" + check;
 
                     // Convertir desde antes
                     string primeraPalabra = Convert.ToString(Convert.ToInt64(version, 16), 2) + ts;
@@ -312,7 +312,7 @@ namespace Sniffer_0._1
 
 
                     label9.Text = "Calculo :";
-                    label22.Text = Convert.ToString(Convert.ToInt64(sumat, 2), 16);
+                    label22.Text = "0x" + Convert.ToString(Convert.ToInt64(sumat, 2), 16);
 
                     label11.Text = ip_d;
                     label12.Text = ip_o;
@@ -371,9 +371,9 @@ namespace Sniffer_0._1
                                 label32.Text = "FIN = 1";
                             }
                             label27.Text = Convert.ToInt64(tamañoVentanaTCP, 16).ToString() + " bytes";
-                            label28.Text = checksumTCP;
-                            label29.Text = punteroUrgente;
-
+                            label28.Text = "0x" + checksumTCP;
+                            //label29.Text = punteroUrgente;
+                            label29.Text = "0 ----- No urgente";
 
                             string datos = trama.Substring(18, 6);
 
@@ -391,7 +391,7 @@ namespace Sniffer_0._1
                             string sumasc, sumatcp, sumad, sumaf;
 
                             int segmento = datos.Length / 2;
-                            segmento += 28;
+                            segmento += 26;
 
                             string palabra1tcp = Convert.ToString(Convert.ToInt64(temp_o.Substring(0, 4), 16), 2);
                             palabra1tcp = Relleno16Bits(palabra1tcp);
@@ -474,9 +474,9 @@ namespace Sniffer_0._1
                             sumaf = sumar(sumasc, sumatcp);
                             sumaf = sumar(sumaf, sumad);
 
-                            //sumaf = Complemento(sumaf);
+                            sumaf = Complemento(sumaf);
 
-                            MessageBox.Show(Convert.ToString(Convert.ToInt64(sumaf, 2), 16));
+                            //MessageBox.Show(Convert.ToString(Convert.ToInt64(sumaf, 2), 16));
 
 
                             break;
