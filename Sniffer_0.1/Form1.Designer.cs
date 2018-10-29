@@ -906,6 +906,7 @@
             this.lstReceivedPackets.TabIndex = 7;
             this.lstReceivedPackets.UseCompatibleStateImageBehavior = false;
             this.lstReceivedPackets.View = System.Windows.Forms.View.Details;
+            this.lstReceivedPackets.SelectedIndexChanged += new System.EventHandler(this.lstReceivedPackets_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
