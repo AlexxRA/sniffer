@@ -500,10 +500,5 @@ namespace Sniffer_0._1
         {
             Application.Exit();
         }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 } 
