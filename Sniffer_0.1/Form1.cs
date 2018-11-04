@@ -9,19 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Collections;
-using System.Threading;
-using System.Net.Sockets;
-using System.Net;
-/*
-using Network.Packet.Analyzer.App.Forms.Main.Interface;
-using Network.Packet.Analyzer.App.Forms.Startup;
-*/
-using Network.Packet.Analyzer.Core.Domain.PacketData;
-using Network.Packet.Analyzer.Core.Domain.Utils;
-using Network.Packet.Analyzer.Core.Domain.Api.Funct;
-using Network.Packet.Analyzer.Core.Domain.Api;
-
-
 
 namespace Sniffer_0._1
 {
@@ -35,13 +22,7 @@ namespace Sniffer_0._1
         private void Sniffer_Load(object sender, EventArgs e)
         {
             timer1.Start();
-
-
-            ListViewItem item = new ListViewItem("1");
-            item.SubItems.Add(DateTime.Now.ToString("HH:mm:ss:") + DateTime.Now.Millisecond.ToString());
-            item.SubItems.Add("ip");
-            item.SubItems.Add("puerto origen");
-            lstReceivedPackets.Items.Add(item);
+            //yeah
         }
 
         public string RellenoOchoBits(string hexa)
@@ -523,11 +504,6 @@ namespace Sniffer_0._1
         private void button3_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void lstReceivedPackets_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            MessageBox.Show("hola");
         }
     }
 } 
